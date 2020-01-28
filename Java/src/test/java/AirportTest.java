@@ -56,16 +56,12 @@ public class AirportTest {
         airport.sortByMaxLoadCapacity();
         List<? extends Plane> planesSortedByMaxLoadCapacity = airport.getPlanes();
 
-        boolean nextPlaneMaxLoadCapacityIsHigherThanCurrent = true;
+        private boolean nextPlaneMaxLoadCapacityIsHigherThanCurrent() {
         for (int i = 0; i < planesSortedByMaxLoadCapacity.size() - 1; i++) {
-            Plane currentPlane = planesSortedByMaxLoadCapacity.get(i);
-            Plane nextPlane = planesSortedByMaxLoadCapacity.get(i + 1);
-            if (currentPlane.getMinLoadCapacity() > nextPlane.getMinLoadCapacity()) {
-                nextPlaneMaxLoadCapacityIsHigherThanCurrent = false;
-                break;
+            return !(planesSortedByMaxLoadCapacity.get(i).getMinLoadCapacity() > planesSortedByMaxLoadCapacity.get(i + 1).getMinLoadCapacity());
             }
         }
-        Assert.assertTrue(nextPlaneMaxLoadCapacityIsHigherThanCurrent);
+        Assert.assertTrue(nextPlaneMaxLoadCapacityIsHigherThanCurrent());
     }
 
     @Test
